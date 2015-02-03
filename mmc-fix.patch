@@ -1,0 +1,11 @@
+--- block.c.orig	2015-02-02 22:02:33.255895039 -0600
++++ block.c	2015-02-02 22:03:26.192888978 -0600
+@@ -2254,7 +2254,7 @@
+ 		return 0;
+ 
+ 	for (idx = 0; idx < card->nr_parts; idx++) {
+-		if (card->part[idx].size) {
++		if (card->part[idx].size && !(card->part[idx].area_type & MMC_BLK_DATA_AREA_RPMB)) {
+ 			ret = mmc_blk_alloc_part(card, md,
+ 				card->part[idx].part_cfg,
+ 				card->part[idx].size >> 9,
